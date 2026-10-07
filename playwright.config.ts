@@ -13,7 +13,9 @@ export default defineConfig({
     launchOptions: {
       executablePath:
         process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE ||
-        (existsSync("/usr/bin/google-chrome") ? "/usr/bin/google-chrome" : undefined),
+        (existsSync("/usr/bin/google-chrome")
+          ? "/usr/bin/google-chrome"
+          : undefined),
     },
     trace: "retain-on-failure",
   },

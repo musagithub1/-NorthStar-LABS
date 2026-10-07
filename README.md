@@ -1,65 +1,71 @@
 # NorthStar Labs
 
-A responsive React + TypeScript website built with Vite. The visual identity uses the supplied NorthStar Labs logo, dark navy surfaces, and blue/cyan accents. Fonts are bundled locally.
+An eight-page React + TypeScript website built with Vite. It uses the supplied logo unchanged, locally hosted fonts, navy surfaces, and blue/cyan accents.
 
-## Run locally
+## Run
 
-Use Node.js 22.12 or later and npm.
+Use Node.js 22.12 or later and npm:
 
 ```bash
 npm ci
 npm run dev
 ```
 
-Open the local URL printed by Vite. Other available commands:
+Open the URL printed by Vite. `npm run build` checks TypeScript, bundles the assets, and pre-renders every page into `dist/`. `npm run preview` serves that production build locally. The preview command is not a production hosting service.
+
+## Pages and content
+
+| Route           | Purpose                                                                               |
+| --------------- | ------------------------------------------------------------------------------------- |
+| `/`             | The NorthStar mission and student/client starting points                              |
+| `/internships/` | Free skill-based internships, expectations, focus areas, and WhatsApp CV applications |
+| `/learn/`       | Filterable learning directions and free resource enquiries                            |
+| `/community/`   | Peer learning, shared responsibility, and the earning vision                          |
+| `/services/`    | Client services and enquiries with the selected service carried into the contact form |
+| `/projects/`    | Clearly labeled illustrative project directions                                       |
+| `/about/`       | The story from shared resources to internships and team growth                        |
+| `/contact/`     | Email/WhatsApp enquiry drafts, direct contacts, and CV application links              |
+
+All routes have their own generated HTML, title, and description. Ordinary links make direct navigation work on a static host without a client-side routing rewrite. Main content and direct contact links work without JavaScript; filters, dialogs, and the form use JavaScript. `dist/404.html` provides a custom missing-page screen.
+
+| Source                             | Update here                                                                |
+| ---------------------------------- | -------------------------------------------------------------------------- |
+| `src/pages/`                       | Main page copy and composition                                             |
+| `src/data/content.ts`              | Contact details, learning directions, services, and general FAQs           |
+| `src/data/community.ts`            | Internship benefits/FAQs, values, journey, and CV introduction             |
+| `src/data/pages.ts`                | Route list, page titles, and descriptions                                  |
+| `src/components/`                  | Shared navigation, footer, forms, dialogs, and sections                    |
+| `src/styles.css` / `src/pages.css` | Brand styling, component states, and responsive layouts                    |
+| `scripts/prerender.mjs`            | Static HTML, domain metadata, sitemap, and robots generation               |
+| `index.html`                       | Shared metadata, favicon, organization details, and no-JavaScript contacts |
+| `public/northstar-logo.png`        | Original logo; preserve this file and its aspect ratio                     |
+
+The owner has confirmed that NorthStar began by sharing free courses/resources and is introducing free skill-based internships. Intake dates, schedules, duration, certificate criteria, and current project availability remain enquiries rather than invented details. Learning directions are not a scheduled course catalog. The client-work and contribution-based revenue-sharing model is a stated vision, not a promised salary or guaranteed income. Project illustrations describe potential work, not completed case studies.
+
+If contact details change, update the shared constants, directly written labels, and organization/no-JavaScript contacts in `index.html`.
+
+## Contact behavior
+
+CV links open WhatsApp with an introduction. Applicants attach their CV and send it themselves. The site does not upload or store CVs.
+
+The form prepares an email or WhatsApp draft. The visitor reviews and sends it in their chosen service. There is no submission backend, account system, or stored enquiry database, and no claim that a message was sent. Reopen/copy/view controls preserve a usable draft if an app does not open. Editing the form clears the old draft. Opening an external app shares the draft with that service under its privacy policy.
+
+## Checks
 
 ```bash
 npm run typecheck
 npm run build
-npm run preview
+npm test
 ```
 
-`build` checks TypeScript, bundles assets, and pre-renders the page into the static site in `dist/`. Main content and direct contact links work without JavaScript; JavaScript enables the interactive controls. `preview` serves that build locally; it is not a production server. These commands describe how to validate the site, not a record of completed checks.
+Playwright checks all eight pages on desktop/mobile, automated WCAG A/AA checks, filters, dialog focus, CV links, service enquiry subjects, contact drafts, navigation, and content without JavaScript. No test sends a message. Tests use the system Chrome executable when available; otherwise install Playwright Chromium with `npx playwright install chromium`, or set `PLAYWRIGHT_CHROMIUM_EXECUTABLE` to your browser executable. Use `npm run format` to format the source.
 
-## Verify
+## Static deployment
 
-After building, run `npm test`. The Playwright suite checks desktop/mobile navigation, filters, dialog focus, FAQ controls, validated contact handoffs, accessibility, overflow, and the page without JavaScript. It never sends a message. The configuration uses `/usr/bin/google-chrome` by default; set `PLAYWRIGHT_CHROMIUM_EXECUTABLE` to your installed Chrome/Chromium executable when needed. Run `npm run format` to format the source.
+Publish the contents of `dist/` to an HTTPS static host. For repository builds, use `npm run build` and output directory `dist`. The site assumes deployment at the domain root and uses `/route/index.html` files; preserve this directory structure. Configure the host to use `404.html` for missing pages.
 
-## Structure and content updates
+Copy `.env.example` to `.env` and set `SITE_URL` to the actual public HTTPS origin before building for publication. It must contain only the origin, with no path, credentials, query, or hash. Alternatively set `SITE_URL` in the host's build environment.
 
-| File                                             | Purpose                                                                                     |
-| ------------------------------------------------ | ------------------------------------------------------------------------------------------- |
-| `src/App.tsx`                                    | Page sections, navigation, learning filters, detail dialogs, FAQs, and contact interactions |
-| `src/data/content.ts`                            | Contact constants, learning directions, services, categories, and FAQ copy                  |
-| `src/styles.css`                                 | Brand styling, layout, component states, and typography                                     |
-| `src/main.tsx`                                   | Client entry point and hydration of the generated HTML                                      |
-| `src/entry-server.tsx` / `scripts/prerender.mjs` | Build-time rendering for readable, indexable HTML without JavaScript                        |
-| `index.html`                                     | Page title, search/social metadata, favicon, and organization structured data               |
-| `public/northstar-logo.png`                      | Original supplied logo, preserved unchanged                                                 |
+When configured, the build generates each page's canonical and Open Graph URL, absolute social/organization logo URLs, `sitemap.xml`, and its robots reference. When blank, local previews use relative image URLs and no invented public domain or sitemap.
 
-Update repeatable content in `src/data/content.ts`. Keep learning categories aligned with `topics` so filtering continues to work. Main section copy and illustrative project directions live in `src/App.tsx`. If contact information changes, update both the shared constants and the organization metadata in `index.html`; check any directly written contact labels as well.
-
-Learning paths describe proposed areas of learning, not courses currently open for enrollment. Availability, schedules, entry requirements, and certificates must be confirmed before publishing specific offers. Project illustrations describe potential applications, not completed client work. Add portfolio entries only when real work and permission to publish are available. Do not add invented clients, testimonials, statistics, team members, or credentials.
-
-Keep `public/northstar-logo.png` unchanged. Preserve its aspect ratio when displaying it; do not recolor, redraw, distort, or replace it.
-
-## Contact behavior
-
-The form prepares a draft and opens the visitor's email application using `mailto:` or opens WhatsApp with a prefilled message. The visitor reviews and sends the message in that service. There is no submission backend, mailing list, account system, or stored enquiry database, and the site does not claim a message was sent.
-
-Continuing to an external service hands the draft to that app or service. If an email application is not configured or a new window is blocked, the direct email address, copy action, and WhatsApp link provide alternatives. If a submission backend is added later, update confirmation states and privacy copy to reflect its actual behavior.
-
-## Deploy
-
-Run `npm ci` and `npm run build`, then publish the **contents of `dist/`** with a static HTTPS host. A host that builds from the repository should use `npm run build` as its build command and `dist` as its output directory. This site currently assumes deployment at the domain root. For a subdirectory deployment, configure Vite's `base` and update root-relative asset references consistently.
-
-Before publishing:
-
-- Choose the actual public domain. Add a canonical link and `og:url` in `index.html` using that domain; do not publish a placeholder URL.
-- Change `og:image` and `twitter:image` to absolute HTTPS URLs for the unchanged logo on the actual domain. Add the real site URL and absolute logo URL to the organization structured data.
-- Confirm the supplied email, WhatsApp number, and location are correct and monitored.
-- Run the type check and production build; inspect the built site on mobile, tablet, and desktop.
-- Check keyboard navigation, focus states, mobile navigation, dialogs, filters, FAQ controls, and both contact handoffs. Sending an actual message remains a deliberate action in the external app.
-- Review opportunity and project copy for current, verified information and review privacy copy against the chosen host's behavior.
-
-No analytics or advertising integrations are included in the application. Revisit privacy information if tracking, embedded services, or backend data collection are introduced.
+Review current intake details and contact information before publication. No analytics or advertising integrations are included; update privacy copy if tracking or a submission backend is added.

@@ -1807,11 +1807,40 @@ h2 {
   font-size: 11px;
   line-height: 1.7;
 }
-.draft-actions { display: flex; flex-wrap: wrap; gap: 8px 18px; align-items: center; }
-.draft-actions a, .draft-actions button { display: inline-flex; align-items: center; gap: 7px; padding: 8px 0; color: #77d8eb; font-size: 11px; background: transparent; }
-.draft-actions a:hover, .draft-actions button:hover { color: #d0f6fc; }
-.draft-fallback summary { cursor: pointer; padding: 9px 0; }
-.draft-fallback pre { white-space: pre-wrap; overflow-wrap: anywhere; font: inherit; padding: 13px; border: 1px solid #2a4159; border-radius: 4px; background: #0a1321; user-select: text; }
+.draft-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  align-items: center;
+}
+.draft-actions a,
+.draft-actions button {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 0;
+  color: #77d8eb;
+  font-size: 11px;
+  background: transparent;
+}
+.draft-actions a:hover,
+.draft-actions button:hover {
+  color: #d0f6fc;
+}
+.draft-fallback summary {
+  cursor: pointer;
+  padding: 9px 0;
+}
+.draft-fallback pre {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font: inherit;
+  padding: 13px;
+  border: 1px solid #2a4159;
+  border-radius: 4px;
+  background: #0a1321;
+  user-select: text;
+}
 
 .site-footer {
   padding-top: 47px;

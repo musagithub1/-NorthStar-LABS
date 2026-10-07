@@ -6,6 +6,7 @@ export const topics = [
   "All topics",
   "AI & machine learning",
   "Development",
+  "Automation",
   "Career growth",
 ] as const;
 
@@ -97,6 +98,21 @@ export const learningTracks: LearningTrack[] = [
       "Understand the basics of scope and client communication",
     ],
   },
+  {
+    id: "automation-workflows",
+    title: "Automation & integrations",
+    category: "Automation",
+    description:
+      "Connect tools and build workflows that turn repetitive work into something simpler.",
+    tags: ["Automation", "Python", "APIs"],
+    details:
+      "Explore automation through useful problems: moving information between tools, preparing data, and simplifying a repeated task. This learning direction connects scripting, APIs, and workflow thinking. Ask the team about current resources and practical projects.",
+    outcomes: [
+      "Map the steps in a repeated workflow",
+      "Explore scripts and connections between tools",
+      "Consider errors, visibility, and tasks that still need a person",
+    ],
+  },
 ];
 
 export interface Service {
@@ -179,14 +195,14 @@ export const faqs = [
       "NorthStar Labs brings together students interested in practical technology skills and clients looking to solve problems with technology. Whether you want to learn, explore a project, or discuss a solution, you can start a conversation with us.",
   },
   {
-    question: "Are courses and internships open now?",
+    question: "How do I join the free internships?",
     answer:
-      "The learning areas on this website describe our direction, rather than a live course catalog. Contact us on WhatsApp or by email for confirmed courses, internships, schedules, and application details.",
+      "NorthStar Labs is introducing free, skill-based internships. Send your CV and a short introduction on WhatsApp to +92 316 9390445. Ask the team about the current intake, schedule, format, and practical requirements before joining.",
   },
   {
-    question: "Will learning opportunities be free?",
+    question: "Is there an internship or training fee?",
     answer:
-      "Free online courses and free online internships are part of what NorthStar Labs aims to offer. Details and any requirements will be provided with each confirmed opportunity. Ask us what is currently available before making plans.",
+      "The skill-based internships we are introducing are free. NorthStar began by sharing free courses and resources, and access to practical learning remains part of our purpose.",
   },
   {
     question: "Do I need experience, and will I get a certificate?",
@@ -202,5 +218,10 @@ export const faqs = [
     question: "How do I discuss a project with NorthStar Labs?",
     answer:
       "Send a short description of your problem or idea by email or WhatsApp. Include your goals and any timeline or budget considerations you already have. We can then discuss fit, scope, and a sensible next step.",
+  },
+  {
+    question: "How does the earning vision work?",
+    answer:
+      "As the team becomes ready, our plan is to pursue freelance and client projects. When projects generate revenue, our aim is to share it fairly according to work and contribution. Income depends on actual projects and is not guaranteed.",
   },
 ];
